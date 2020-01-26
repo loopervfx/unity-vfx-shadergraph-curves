@@ -36,6 +36,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - CurvesTexture2D:
+        m_Texture: {fileID: 8400000, guid: 9c25f0201169cbb4ebacd8c8ed3936c4, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -110,6 +114,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _TangentMapOS:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexelSize_95E703E1_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_14486307_Out_0:
+        m_Texture: {fileID: 8400000, guid: 9c25f0201169cbb4ebacd8c8ed3936c4, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ThicknessMap:
@@ -244,7 +256,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - ADSR: {r: 0.2, g: 0.3, b: 0.5, a: 0.1}
-    - Vector2_9B793771: {r: 1024, g: 1024, b: 0, a: 0}
+    - Vector2_9B793771: {r: 128, g: 128, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

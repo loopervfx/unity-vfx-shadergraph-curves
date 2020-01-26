@@ -9,17 +9,21 @@ float rand(float2 co){
 }
 
 // generate random adsr envelope parameters
-void adsrRandom_float(float2 uv, out float4 Out)
+void parametersRandom_float(float2 uv, out float4 Out)
 {
-    float4 adsr = (float4)0.0;
+    float4 parameters = (float4)0.0;
 
+    // set random value for the 4 vector components
     [unroll]
     for (int i=0; i<4; i++)
     {
-        adsr[i] = rand(uv.yy + float(i)*0.1);
+        parameters[i] = rand(float2(uv.y, i));
     }
 
-    Out = normalize(adsr);
+    // set a minimum value
+    parameters = clamp(parameters, 0.1, 1.0);
+
+    Out = normalize(parameters);
 }
 
 // a simple envelope function for fast attack and slow decays
@@ -27,47 +31,38 @@ void adsrRandom_float(float2 uv, out float4 Out)
 // use k to control the stretching of the function
 void impulse_float(float x, float k, out float Out)
 {
-  float h = k * x;
-  Out =  h * exp(1.0 - h);
+    float h = k * x;
+    Out =  h * exp(1.0 - h);
 }
 
 // the adsr function has three arguments
 // time, the value to decay to, a float4 with ADSR parameters
 // https://www.fsynth.com/documentation/tutorials/env/
-void adsr_float(float t, float s, float4 v, out float Out) 
+void adsr_float(float t, float s, float4 v, out float Out)
 {
-  v.xyw = max((float3)2.2e-05, v.xyw);
-  // attack term
-  float ta = t/v.x;
-  // decay / sustain amplitude term
-  float td = max(s, 1.0-(t-v.x)*(1.0-s)/v.y);
-  // length / release term
-  float tr = (1.0 - max(0.0,t-(v.x+v.y+v.z))/v.w);
-  Out = max(0.0, min(ta, tr*td));
+    v.xyw = max((float3)2.2e-05, v.xyw);
+    // attack term
+    float ta = t/v.x;
+    // decay / sustain amplitude term
+    float td = max(s, 1.0-(t-v.x)*(1.0-s)/v.y);
+    // length / release term
+    float tr = (1.0 - max(0.0,t-(v.x+v.y+v.z))/v.w);
+    Out = max(0.0, min(ta, tr*td));
 }
 
 // test to ensure texture coordinate is correct
-void everyOther_float(float2 textureSize, float2 texCoord, out float4 Out)
+void everyOther_float(float2 texelSize, float2 uv, out float4 Out)
 {
-     // Default color is fully transparent
-   float4 color = (float4)0;
+    // Scale to int texture size
+    uint row = uint(texelSize.y * uv.y);
 
-   // Scale to int texture size
-   int row = texCoord.y * textureSize.y; 
+    // Even or odd?
+    bool even = row % 2;
+    bool odd = !even;
 
-   // Even or odd? Only even lines are sampled
-   if(row % 2)
-   {
-      //color = tex2D(TexSampler, texCoord);
-      color = float4(1.0, 0.0, 0.0, 1.0);
-   }
-   else
-   {
-      color = float4(0.0, 0.0, 1.0, 1.0); 
-   }
-
-   Out = color;
+    Out = float4(even, 0.0, odd, 1.0);
 }
+
 
 
 #endif //MYHLSLINCLUDE_INCLUDED
