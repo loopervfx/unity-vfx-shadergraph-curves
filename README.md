@@ -1,4 +1,4 @@
-# unity-vfx-shadergraph-curves
+# unity vfx shadergraph curves
 
 An exercise to test the feasibility of using Unity Shader Graph (and custom function nodes) to generate per particle animation curves for Visual Effect Graph,
 In this case, ADSR style envelopes (attack, decay, sustain, release.) A simple impulse example is included as well.
