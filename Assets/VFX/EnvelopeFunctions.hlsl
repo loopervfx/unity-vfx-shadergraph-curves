@@ -50,8 +50,10 @@ void adsr_float(float t, float s, float4 v, out float Out)
     Out = max(0.0, min(ta, tr*td));
 }
 
-// test to ensure texture coordinate is correct
-void everyOther_float(float2 texelSize, float2 uv, out float4 Out)
+// test that colors even rows red
+// and odd rows blue to ensure that 
+// texture coordinate is correct
+void evenOddRows_float(float2 texelSize, float2 uv, out float4 Out)
 {
     // Scale to int texture size
     uint row = uint(texelSize.y * uv.y);
@@ -62,7 +64,5 @@ void everyOther_float(float2 texelSize, float2 uv, out float4 Out)
 
     Out = float4(even, 0.0, odd, 1.0);
 }
-
-
 
 #endif //MYHLSLINCLUDE_INCLUDED
