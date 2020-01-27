@@ -1,8 +1,7 @@
 # Unity VFX ShaderGraph Curves
 
-An exercise to test the feasibility of using Unity Shader Graph (and custom function nodes) to generate per particle animation curves for Visual Effect Graph,
-In this case, ADSR style envelopes (attack, decay, sustain, release.) A simple impulse example is included as well.
-This started as a conversation with Carlos Garcia / L05 on the Unity discord.
+An exercise to test the feasibility of using Unity Shader Graph (and custom function nodes) to generate per particle animation curves for Visual Effect Graph. This started as a conversation with Carlos Garcia / L05 on the Unity discord.
+In this case, ADSR style envelopes (attack, decay, sustain, release) are generated. A simple impulse curve and a test pattern generator is included as well. Credit to fsynth for the adsr and impulse functions and also indirectly to inigo quilez.
 
 This could be further simplified in forthcoming release of visual effect graph with support for arrays. Then a custom shader or Shader Graph may not be needed at all. I can think of a few other ways to approach this with futures in mind as well. Such as setting the ADSR float4 directly as an attribute for each particle, and procedurally look up the curve at runtime in the vfx graph compute context using the age attribute, which avoids generating a buffer at all. this would require some sort of custom function block and or operator which I believe is on the roadmap as well
 
