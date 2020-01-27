@@ -9,3 +9,6 @@ This could be further simplified in forthcoming release of visual effect graph w
 If it's a workable solution to do the envelope lookup before / outside of vfx graph and just have the current attribute values like "current size" streamed into vfx graph on a smaller buffer.. instead of a buffer of envelopes that vfx graph has to sample per particle to determine the current value of based on particle age.
 
 Currently The main thing I'm not happy with is that there is no built-in way yet to create a Shader Graph that renders directly into a Texture2D or Texture3D. So this examples uses an orthographic camera that is masked to only see a quad with the HDRP Unlit shader graph material applied to it. It would be much cleaner and more flexible (Texture3D, Texture2D array support) to have a Render Texture Shader Graph type available. In fact LG has shown this possible in a fork of HDRP they made for a robotics simulator a while back that can be found on github with a "Custom RenderTexture ShaderGraph," but I had limited success in porting it from HDRP 5.1 to 7.1 and decided against pursuing it further as it would actually be cleaner to start over fresh.
+
+![ShaderGraph Custom Functions](screenshot0.png) 
+![VisualEffectGraph Particles](screenshot1.png)
